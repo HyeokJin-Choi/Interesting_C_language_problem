@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<string> C_alpha = { "c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z=" };
+    string input;
+    int count = 0;
+
+    cin >> input;
+
+    for (const string& alpha : C_alpha) {
+       size_t pos = input.find(alpha); // find함수를 통해 사용자로부터 입력받은 input의 문자열에서 크로아티아 문자를 찾아서 그 인덱스를 반환
+        while (pos != string::npos) {
+            input.replace(pos, alpha.length(), "#");  // 위에서 찾은 인덱스를 사용하여 치환된 부분을 "#"으로 대체
+            pos = input.find(alpha); // while의 조건문에서 걸리지 않았으니, 크로아티아의 문자가 존재한다는 것이고, input에 크로아티아 문자가 하나만 있는게 아닐 수도 있기에,
+// 인덱스를 이전의 while문에서 걸리지 않은 같은 크로아티아 문자로 재검자를 시키기 위함.
+        }
+    }
+
+    count += input.length(); // 치환한 것을 다 센다.
+
+    cout << count << endl;
+
+    return 0;
+}
+
+*** const의 장점은 값을 고정시켜 놓는 느낌으로 예기치 않은 변경을 방지하고, 컴파일러가 최적화를 수행할 수 있도록 해준다. -> 읽기전용으로 사용되므로, 변경을 원하거나 
+복사 등을 원한다면 const사용을 하지 않는 것이 좋다. ***
+*** size_t타입은 c++에서 부호없는 정수형으로 사용된다. 컨테이너의 크기나 인덱스를 나타내기 위해서 적합하다. -> 양의 정수값만 다루는게 안전하다.***
+
