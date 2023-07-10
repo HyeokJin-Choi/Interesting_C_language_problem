@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<char> Board;
+    char Board_input;
+    int N, M;
+    size_t R_index_N = 0; size_t B_index_N = 0; size_t O_index_N = 0;
+    size_t R_index_M = 0; size_t B_index_M = 0; size_t O_index_M = 0;
+    cin >> N >> M;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            cin >> Board_input;
+            if (Board_input == 'R') {
+                R_index_N = i+1;
+                R_index_M = j+1;
+            }
+            else if (Board_input == 'B') {
+                B_index_N = i+1;
+                B_index_M = j+1;
+            }
+            else if (Board_input == 'O') {
+                O_index_N = i+1;
+                O_index_M = j+1;
+            }
+            //if (Board_input.length() > M) { cout << "보드판의 크기를 초과했습니다."; break; }
+            Board.push_back(Board_input);
+        }
+    }
+    for (int i = 0; i < 10; i++) {
+        R_index_N--; B_index_N--;
+        if (Board[R_index_N][R_index_M] == '#') {
+            R_index_N += 2;
+        }
+    }
+
+    return 0;
+}
+//아직 진행 중임
