@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int N, B, C;
+    vector<int> A;
+    long long count = 0;
+    cin >> N;
+    for (int i = 0; i < N; i++) {
+        int input_A;
+        cin >> input_A;
+        A.push_back(input_A);
+    }
+    cin >> B >> C;
+    for (auto& a : A) {
+        a -= B;
+        if (a>0 && a%C == 0) {
+            count += a / C;
+        }
+        else if(a>0) {
+            count += a / C + 1;
+        }
+    }
+    cout << count+N;
+
+    return 0;
+}
