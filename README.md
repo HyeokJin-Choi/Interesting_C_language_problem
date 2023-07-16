@@ -73,3 +73,35 @@ int main()
 
     return 0;
 }
+
+long long 데이터 타입 사용시 오류 체크하고, 오류 제거하기
+#include <iostream>
+#include <limits>
+using namespace std;
+
+int main() {
+    long long a, b;
+    while (true) {
+        if (!(cin >> a >> b)) {
+            // 입력이 잘못되었을 때 처리
+            cerr << "잘못된 입력입니다. 정수 값을 입력하세요." << endl;
+            // 입력 스트림 초기화
+            cin.clear();
+            // 잘못된 입력 무시
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (a == 0 && b == 0) {
+            break;
+        }
+
+        if (a > b) {
+            cout << "Yes" << '\n';
+        } else {
+            cout << "No" << '\n';
+        }
+    }
+
+    return 0;
+}
