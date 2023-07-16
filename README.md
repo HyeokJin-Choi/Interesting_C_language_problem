@@ -35,3 +35,41 @@ int main()
 
     return 0;
 }
+
+사용자로부터 16진수를 입력받은 후 그 값을 10진수로 변환하여 출력해주는 코드를 작성하시오.
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    string hex;
+    int decimal = 0;
+
+    cout << "16진수 값을 입력하세요: ";
+    cin >> hex;
+
+    int power = 1;
+    for (int i = hex.length() - 1; i >= 0; i--) {
+        int digit;
+        if (hex[i] >= '0' && hex[i] <= '9') {
+            digit = hex[i] - '0';
+        } else if (hex[i] >= 'A' && hex[i] <= 'F') {
+            digit = hex[i] - 'A' + 10;
+        } else if (hex[i] >= 'a' && hex[i] <= 'f') {
+            digit = hex[i] - 'a' + 10;
+        } else {
+            cout << "유효하지 않은 16진수입니다." << endl;
+            return 0;
+        }
+
+        decimal += digit * power;
+        power *= 16;
+    }
+
+    cout << "10진수 값: " << decimal << endl;
+
+    return 0;
+}
